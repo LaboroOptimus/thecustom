@@ -13,6 +13,9 @@ module.exports = {
     },
     extensions: ['.tsx', '.ts', '.js'],
   },
+  devServer: {
+    historyApiFallback: true,
+  },
   module: {
     rules: [
         {
