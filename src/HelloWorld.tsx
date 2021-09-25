@@ -1,9 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
-const HelloWorld = () => {
-  return (
-      <h3>Hello World!!!</h3>
-  );
-};
+const HelloWorld = () => (
+  <h3>Hello World!!!</h3>
+);
 
 export { HelloWorld };
