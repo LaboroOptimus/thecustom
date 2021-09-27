@@ -1,0 +1,63 @@
+.wrapper-goods {
+    padding: 50px;
+
+    @media screen and (max-width: 900px) {
+        padding: 10px;
+    }
+}
+
+.filter {
+    height: 500px; 
+    background: #eee;
+}
+
+.goods-items-row {
+    margin-bottom: 40px;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+
+    @media screen and (max-width: 900px) {
+        & > div {
+            padding-left: 0 !important;
+            margin: 20px 0;
+        }
+    }    
+}
+
+.goods-item {
+    display: flex;
+    flex-direction: column;
+    
+
+    img {
+        display: block;
+        width: 100%;
+    }
+}
+
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+    border-right: none !important;
+}
+
+.ant-menu-sub.ant-menu-inline {
+    background: transparent !important;
+}
+
+.filter-icon {
+    font-size: 12px !important;
+
+    &[aria-label="sneakers"] {
+        position: relative;
+        top: -4px;
+    }
+
+    &[aria-label="shirt"] {
+        position: relative;
+        top: -1px;
+    }
+
+    &[aria-label="handbag"] {
+        position: relative;
+        top: -1px;
+    }
+}

@@ -5,8 +5,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Listing from './components/Listing';
-import Home from './components/Home';
+import Listing from './pages/Listing';
+import Home from './pages/Home';
 
 const App = () => {
   return (

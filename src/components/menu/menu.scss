@@ -1,0 +1,39 @@
+.logo {
+    font-size: 16px;
+    padding-right: 20px;
+}
+
+.menu {
+    border-bottom: 0;
+}
+
+.menu-button-mobile {
+    font-size: 20px;
+    color: #fff;
+}
+
+.menu-wrapper-mobile {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 15px;
+    background: #000000;
+}
+
+.menu-header {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    background: #fff;
+    display: flex;
+}
+.menu-header-mobile {
+    padding: 0;
+}
+.menu-item {
+    font-size: 16px;
+}
+
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after {
+    border-bottom: 2px solid transparent !important;
+    color: inherit !important;
+}

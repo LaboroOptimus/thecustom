@@ -1,0 +1,91 @@
+.wrapper {
+    padding: 50px;
+
+    @media screen and (max-width: 900px) {
+        padding: 30px;
+    }
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 30px !important;
+
+    @media screen and (max-width: 900px) {
+        font-size: 22px !important;
+    }
+}
+
+.main-bg {
+    background-image: url("https://fakeimg.pl/680x400/eeeeee/");
+    background-repeat: no-repeat;
+    height: 400px;
+}
+
+.main-cta-bg {
+    background-image: url("https://fakeimg.pl/680x300/eeeeee/");
+    background-repeat: no-repeat;
+    height: 400px;
+}
+
+.main-text {
+    & > h1 {
+        font-size: 40px;
+        line-height: 1.48em;
+        padding-top: 60px;
+
+        @media screen and (max-width: 900px) {
+            padding-top: 0;
+            font-size: 30px !important;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        margin-top: 0;
+        text-align: center;
+    }
+}
+
+.slider-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-cta-text h2 {
+    line-height: 1.23 !important;
+    margin: 30px 0 !important;
+
+    @media screen and (max-width: 900px) {
+        text-align: center;
+    }
+}
+
+.main-cta-text > div {
+    margin-bottom: 30px !important;
+
+    @media screen and (max-width: 900px) {
+        text-align: center;
+    }
+}
+
+.main-cta-text > button {
+    @media screen and (max-width: 900px) {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.howitworks-item {
+    text-align: center;
+}
+
+.howitworks-item > img {
+    width: 100px;
+    height: 100px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.footer {
+    background-color: #eee;
+    padding: 50px;
+}
