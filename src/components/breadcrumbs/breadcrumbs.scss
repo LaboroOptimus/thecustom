@@ -1,0 +1,14 @@
+.breadcrumbs-wrapper {
+    padding: 0 50px;
+
+    @media screen and (max-width: 900px) {
+        padding: 0 30px;
+    }
+}
+
+.title-wrapper {
+    padding: 50px 50px 0 50px;
+    @media screen and (max-width: 900px) {
+        padding: 0 30px;
+    }
+}

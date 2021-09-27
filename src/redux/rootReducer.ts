@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import counterReducer from './reducers/counter'
+import serviceReducer from './reducers/service'
+import goodsReducer from './reducers/goods'
 
   export const rootReducer = combineReducers({
-    counter: counterReducer,
+    service: serviceReducer,
+    goods: goodsReducer
   });
   
   export type RootState = ReturnType<typeof rootReducer>
