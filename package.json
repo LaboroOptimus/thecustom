@@ -6,8 +6,11 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --mode=development --open --hot",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production",
+    "server": "nodemon server/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run start\""
   },
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
@@ -20,9 +23,16 @@
     "@types/react-redux": "^7.1.18",
     "antd": "^4.16.13",
     "axios": "^0.21.4",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "classnames": "^2.3.1",
+    "config": "^3.3.6",
     "css-loader": "^6.3.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "express-validator": "^6.12.2",
     "html-webpack-plugin": "^5.3.2",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
@@ -46,6 +56,7 @@
     "@types/react-router-dom": "^5.3.0",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
     "@typescript-eslint/parser": "^4.31.2",
+    "concurrently": "^6.2.2",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.24.2",

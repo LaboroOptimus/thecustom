@@ -3,3 +3,15 @@
 export const SET_PATH = 'SET_PATH';
 
 export const SET_FILTER = 'SET_FILTER'
+
+export const REGISTER_CALL = 'REGISTER_CALL';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_ERROR = 'REGISTER_ERROR';
+
+export const LOGIN_CALL = 'LOGIN_CALL';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+
+export const CHECK_TOKEN_CALL = 'CHECK_TOKEN_CALL';
+export const CHECK_TOKEN_SUCCESS = 'CHECK_TOKEN_SUCCESS';
+export const CHECK_TOKEN_ERROR = 'CHECK_TOKEN_ERROR'

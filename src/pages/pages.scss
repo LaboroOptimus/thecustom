@@ -1,3 +1,52 @@
 .navbar-margin {
-    margin-top: 65px;
+  margin-top: 65px;
+}
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+
+  .auth-title {
+    text-align: center;
+  }
+
+  .auth-checked {
+    text-align: center;
+  }
+
+  .auth-add {
+    display: block;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .ant-space {
+    width: 35%;
+
+    @media screen and (max-width: 1024px) {
+      width: 50%;
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 70%;
+    }
+
+    @media screen and (max-width: 480px) {
+      width: 90%;
+    }
+  }
+
+  button {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .auth-input-item
+    > .ant-form-item-control
+    > .ant-form-item-control-input
+    > .ant-form-item-control-input-content {
+    display: flex;
+    align-items: center;
+  }
 }

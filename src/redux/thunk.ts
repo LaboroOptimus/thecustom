@@ -1,36 +1,72 @@
-import axios from 'axios'
-import { fetchUsers } from './api'
+import { useSelector } from 'react-redux';
+import { RegisterData, ServerResponseStatus, LoginData } from '../utils/types';
+import {
+  registerUserCall,
+  registerUserSuccess,
+  registerUserError,
+  loginUserCall,
+  loginUserSuccess,
+  loginUserError,
+  checkTokenCall,
+  checkTokenError,
+  checkTokenSuccess,
+} from './actions/creators/service';
+import { registerUserAPI, loginUserAPI, checkTokenAPI } from './api';
+import { RootState } from './rootReducer';
 
-// export const getUsers = () => {
-//     return async (dispatch: any) => {
-//         dispatch(getUsersStart())
-//         fetchUsers()
-//             .then(
-//                 response => dispatch(getUsersSuccess(response.data)),
-//                 error => dispatch(getUsersError(error)))
-//     };
-// };
+export const registerUser = (data: RegisterData) => {
+  return async (dispatch: any) => {
+    dispatch(registerUserCall());
+    try {
+      const response = await registerUserAPI(data);
+      if (response.data.status === ServerResponseStatus.Success) {
+        dispatch(registerUserSuccess(response.data));
+      } else {
+        throw new Error(response.data.message || 'Что-то пошло не так');
+      }
+    } catch (error) {
+      dispatch(registerUserError(error.message));
+    }
+  };
+};
 
-/* test fetch */
+export const loginUser = (data: LoginData) => {
+  return async (dispatch: any) => {
+    dispatch(loginUserCall());
+    try {
+      const response = await loginUserAPI(data);
+      if (response.data.status === ServerResponseStatus.Success) {
+        dispatch(loginUserSuccess(response.data));
+      } else {
+        throw new Error(response.data.message || 'Что-то пошло не так');
+      }
+    } catch (error) {
+      dispatch(loginUserError(error.message));
+    }
+  };
+};
 
-// const getUsersStart = () => {
-//     return {
-//         type: GET_CURRENT_USER_START,
-//     }
-// }
+export const checkToken = () => {
+  return async (dispatch: any) => {
+    dispatch(checkTokenCall());
+    try {
+     
+      let token = localStorage.getItem('customToken');
 
-// const getUsersError = (error: any) => {
-//     return {
-//         type: GET_CURRENT_USER_FAILURE,
-//         payload: error
-//     }
-// }
-
-// const getUsersSuccess = (data: any) => ({
-//     type: GET_CURRENT_USER_SUCCESS,
-//     payload: {
-//         ...data
-//     }
-// });
-
-/* test fetch */
+      const data = {
+        payload : {},
+        headers : {
+          token: `Bearer ${token}`
+        }
+      }
+      const response = await checkTokenAPI(data);
+      if (response.data.status === ServerResponseStatus.Success) {
+        dispatch(checkTokenSuccess({...response.data, token}));
+      } else {
+        dispatch(checkTokenError('Что-то пошло не так'));
+      }
+    } catch (error) {
+      dispatch(checkTokenError(error.message));
+    }
+  };
+};
