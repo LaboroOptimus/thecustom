@@ -10,7 +10,7 @@ import {
   SET_SORT_TYPE
 } from '../types';
 
-export const setGoodsFilter = (id: number) => {
+export const setGoodsFilter = (id: string) => {
   return {
     type: SET_FILTER,
     payload: id,

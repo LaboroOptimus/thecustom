@@ -40,9 +40,9 @@ export const addItemAPI = (data: any, token:string) =>
   });
 
   export const getAllItemsAPI = async (data: any) => {
-    return axios.post('/api/goods/get/all', data)
+    return axios.post('/api/goods/get', data)
   }
 
-  export const getAllItemsByPriceAPI = async (data: any) => {
+  export const getAllItemsByFilterAPI = async (data: any) => {
     return axios.post('/api/goods/get/all-by-price', data)
   }

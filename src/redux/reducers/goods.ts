@@ -12,7 +12,7 @@ import {
 import { LoadingStatus } from '../../utils/types';
 
 interface InitialState {
-  filter: number;
+  filter: string;
   photos: any[];
   addStatus: LoadingStatus;
   fetchStatus: LoadingStatus;
@@ -21,7 +21,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  filter: 0,
+  filter: 'футболки',
   photos: [],
   addStatus: LoadingStatus.None,
   fetchStatus: LoadingStatus.None,

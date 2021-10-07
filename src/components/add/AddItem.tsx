@@ -67,12 +67,18 @@ const AddItem = () => {
       setSizeType(clothesSize);
     }
 
-    if (['обувь'].indexOf(currentType) > -1) {
+    if (['кеды', 'кроссовки'].indexOf(currentType) > -1) {
       setSizeType(bootsSize);
     }
 
     if (['джинсы', 'брюки'].indexOf(currentType) > -1) {
       setSizeType(pantsSize);
+    }
+
+    if(['шапки', 'кепки', 'сумки', 'украшения', 'другое'].indexOf(currentType) > -1) {
+      setCurrentSize([]);
+      setIsSizeDisabled(true)
+      setIsPriceDisabled(false);
     }
   }, [currentType]);
 
@@ -107,6 +113,7 @@ const AddItem = () => {
 
   const handleReset = () => {
     setIsGenderDisabled(false);
+    setIsSizeDisabled(true)
     setIsPriceDisabled(true);
     form.resetFields();
   };
@@ -202,7 +209,6 @@ const AddItem = () => {
               <Item
                 label='Размер (RU)'
                 name='size'
-                rules={[{ required: true, message: 'Выберите размер' }]}
               >
                 <Select onChange={handleChangeSize} disabled={isSizeDisabled} mode='multiple'>
                   {sizeType?.map((item) => {

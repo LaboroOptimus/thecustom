@@ -25,7 +25,6 @@ import {
   checkTokenAPI,
   addItemAPI,
   getAllItemsAPI,
-  getAllItemsByPriceAPI,
 } from './api';
 
 export const registerUser = (data: RegisterData) => {
@@ -105,23 +104,6 @@ export const getItems = (data: any) => {
     dispatch(getItemsCall());
     try {
       const response = await getAllItemsAPI(data);
-      if (response.data.status === ServerResponseStatus.Success) {
-        dispatch(getItemsSuccess(response.data.items));
-      } else {
-        throw new Error(response.data.message || 'Что-то пошло не так');
-      }
-    } catch (error) {
-      dispatch(getItemsError(error.message));
-    }
-  };
-};
-
-export const getItemsByPrice = (data: any) => {
-  return async (dispatch: any) => {
-    dispatch(getItemsCall());
-    try {
-      const response = await getAllItemsByPriceAPI(data);
-      console.log('RESPONSE', response);
       if (response.data.status === ServerResponseStatus.Success) {
         dispatch(getItemsSuccess(response.data.items));
       } else {

@@ -50,17 +50,30 @@ router.post(
   }
 );
 
-router.post('/get/all', async (req, res) => {
+router.post('/get', async (req, res) => {
   try {
-    const { count } = req.body;
-
-    const items = await Item.find({}).sort({ date: -1}).skip(count).limit(1000)
-
-    if(items.length > 0) {
-      res.status(200).json({ message: 'Успешно', items: items, status: 'success' })
+    const { count, sort, filter } = req.body;
+   
+    if(sort === 'date'){
+      Item.find({type: filter}).sort({ date: -1}).skip(count).limit(1000).exec((err, result) => {
+        if(err){
+          res.status(500).json({ message: 'Что-то пошло не так', items: [], status: 'error' });
+        }
+        else {
+          res.status(200).json({ message: 'Успешно', items: result, status: 'success' })
+        }
+      }) 
     }
-    else {
-      res.status(200).json({ message: 'Больше товаров нет', items: [], status: 'error' })
+
+    if(sort === 'price') {
+      Item.find({type: filter}).sort({price: 1}).skip(count).limit(1000).exec((err, result) => {
+        if(err){
+          res.status(500).json({ message: 'Что-то пошло не так', items: [], status: 'error' });
+        }
+        else {
+          res.status(200).json({ message: 'Успешно', items: result, status: 'success' })
+        }
+      }) 
     }
 
   } 
@@ -69,24 +82,5 @@ router.post('/get/all', async (req, res) => {
   }
 });
 
-router.post('/get/all-by-price', async (req, res) => {
-  try {
-    console.log('BODY', req.body)
-    const { count } = req.body;
-    
-
-    const items = await Item.find({}).sort({price: 1}).exec((err, result) => {
-      if(err){
-        res.status(500).json({ message: 'Что-то пошло не так', items: [], status: 'error' });
-      }
-      else {
-        res.status(200).json({ message: 'Успешно', items: result, status: 'success' })
-      }
-    }) 
-  } 
-  catch (err) {
-    res.status(500).json({ message: 'Что-то пошло не так', items: [], status: 'error' });
-  }
-});
 
 module.exports = router;

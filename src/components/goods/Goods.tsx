@@ -1,14 +1,13 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, List, Select } from 'antd';
 
 import { cutString } from '../../utils/methods';
 import { RootState } from '../../redux/rootReducer';
 import { LoadingStatus } from '../../utils/types';
-import { getItems, getItemsByPrice } from '../../redux/thunk';
+import { getItems } from '../../redux/thunk';
 import { setSortType } from '../../redux/actions/creators/goods';
 import Filters from './Filters';
-
 
 import './goods.scss';
 
@@ -20,17 +19,11 @@ const GoodItems = () => {
   const status = useSelector((state: RootState) => state.goods.fetchStatus);
   const isLoading = status !== LoadingStatus.Success;
   const sortType = useSelector((state: RootState) => state.goods.sortType);
+  const filter = useSelector((state: RootState) => state.goods.filter)
 
-  console.log('ITEMS', items)
- 
   useEffect(() => {
-    if (sortType === 'price') {
-      dispatch(getItemsByPrice({ count: 0 }));
-    }
-    if (sortType === 'date') {
-      dispatch(getItems({ count: 0 }));
-    }
-  }, [sortType]);
+    dispatch(getItems({ count: 0, sort: sortType, filter }));
+  }, [sortType, filter]);
 
   const handleChange = (value: string) => {
     dispatch(setSortType(value));
@@ -57,13 +50,13 @@ const GoodItems = () => {
         }}
         size='large'
         loading={isLoading}
-        dataSource={[...items, ...items]}
+        dataSource={items}
         className='goods-list'
         renderItem={(item: any) => (
           <Item key={item._id} className='goods-item'>
             <img src={item.photos[0].thumbUrl} />
             <span className='goods-item-title'>{cutString(item.name, 24)}</span>
-            <span className='goods-item-price'>{item.price}</span>
+            <span className='goods-item-price'>{item.price} {' '} ₽</span>
           </Item>
         )}
       />

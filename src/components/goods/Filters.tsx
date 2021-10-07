@@ -21,11 +21,7 @@ const Filters = () => {
     }
   };
 
-  // const handleFilterItems = useCallback((id) => {
-  //     dispatch(setGoodsFilter(id))
-  // },[dispatch])
-
-  const handleFilterItems = (id: number) => {
+  const handleFilterItems = (id: string) => {
     dispatch(setGoodsFilter(id));
   };
 
@@ -40,17 +36,11 @@ const Filters = () => {
         }
         title='Обувь'
       >
-        <Item onClick={() => handleFilterItems(1)} key='1'>
+        <Item onClick={() => handleFilterItems('кроссовки')} key='1'>
           Кроссовки
         </Item>
-        <Item onClick={() => handleFilterItems(2)} key='2'>
-          Ботинки
-        </Item>
-        <Item onClick={() => handleFilterItems(3)} key='3'>
+        <Item onClick={() => handleFilterItems('кеды')} key='2'>
           Кеды
-        </Item>
-        <Item onClick={() => handleFilterItems(4)} key='4'>
-          Сандалии
         </Item>
       </SubMenu>
       <SubMenu
@@ -62,14 +52,31 @@ const Filters = () => {
         }
         title='Одежда'
       >
-        <Item onClick={() => handleFilterItems(5)} key='5'>
+        <Item onClick={() => handleFilterItems('футболки')} key='3'>
           Футболки
         </Item>
-        <Item onClick={() => handleFilterItems(6)} key='6'>
+        <Item onClick={() => handleFilterItems('толстовки')} key='4'>
           Толстовки
         </Item>
-        <Item onClick={() => handleFilterItems(7)} key='7'>
+        <Item onClick={() => handleFilterItems('худи')} key='5'>
+          Худи
+        </Item>
+        <Item onClick={() => handleFilterItems('куртки')} key='6'>
           Куртки
+        </Item>
+
+        <Item onClick={() => handleFilterItems('пиджаки')} key='7'>
+          Пиджаки
+        </Item>
+
+        <Item onClick={() => handleFilterItems('джинсы')} key='8'>
+          Джинсы
+        </Item>
+        <Item onClick={() => handleFilterItems('брюки')} key='9'>
+          Брюки
+        </Item>
+        <Item onClick={() => handleFilterItems('платья')} key='10'>
+          Платья
         </Item>
       </SubMenu>
       <SubMenu
@@ -81,44 +88,27 @@ const Filters = () => {
         }
         title='Аксессуары'
       >
-        <Item onClick={() => handleFilterItems(8)} key='8'>
+        <Item onClick={() => handleFilterItems('сумки')} key='11'>
           Сумки
         </Item>
-        <Item onClick={() => handleFilterItems(9)} key='9'>
+        <Item onClick={() => handleFilterItems('кепки')} key='12'>
           Кепки
         </Item>
-        <Item onClick={() => handleFilterItems(10)} key='10'>
-          Зонты
+        <Item onClick={() => handleFilterItems('кепки')} key='13'>
+          Шапки
         </Item>
-        <Item onClick={() => handleFilterItems(11)} key='11'>
+        <Item onClick={() => handleFilterItems('перчатки')} key='14'>
           Перчатки
         </Item>
-      </SubMenu>
-
-      <SubMenu
-        key='sub4'
-        icon={
-          <span role='img' aria-label='moai' className='filter-icon'>
-            🗿
-          </span>
-        }
-        title='Разное'
-      >
-        <Item key='12'>Сумки</Item>
-      </SubMenu>
-      <SubMenu
-        key='sub5'
-        icon={
-          <span role='img' aria-label='gem' className='filter-icon'>
-            💎{' '}
-          </span>
-        }
-        title='Luxe'
-      >
-        <Item key='13'>Сумки</Item>
+        <Item onClick={() => handleFilterItems('украшения')} key='15'>
+          Украшения
+        </Item>
+        <Item onClick={() => handleFilterItems('разное')} key='16'>
+          Разное
+        </Item>
       </SubMenu>
     </Menu>
   );
 };
 
-export default Filters
+export default Filters;
