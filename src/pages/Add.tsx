@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Layout, Typography } from 'antd';
 import Navbar from '../components/menu/Navbar';
 import Breadcrumbs from '../components/breadcrumbs/Breadcrumbs';
-import Goods from '../components/goods/Goods';
+import AddItem from '../components/add/AddItem';
+import { checkToken } from '../redux/thunk';
 import './pages.scss';
 
-const Listing = () => {
+const Add = () => {
   const { Content } = Layout;
-  const dispatch = useDispatch();
-
   return (
     <>
       <Row>
@@ -17,7 +16,7 @@ const Listing = () => {
           <Navbar />
           <Content className='navbar-margin'>
             <Breadcrumbs />
-            <Goods />
+            <AddItem />
           </Content>
         </Col>
       </Row>
@@ -25,4 +24,4 @@ const Listing = () => {
   );
 };
 
-export default Listing;
+export default Add;

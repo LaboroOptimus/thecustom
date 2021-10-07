@@ -6,10 +6,12 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = config.get('port') || 5000;
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '10mb'}));
+app.use(bodyParser.json({limit: '10mb', extended: true}))
 app.use(express.json({ extended: true })); //
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/service', require('./routes/service'));
+app.use('/api/goods', require('./routes/goods'));
 
 async function start() {
   try {

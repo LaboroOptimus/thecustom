@@ -9,7 +9,7 @@ const router = Router();
 router.post('/check/token', async (req, res) => {
   try {
     const token = req.headers.authentication.split(' ')[1];
-    
+  
     if (!token) {
       return res.status(200).json({ message: 'Нет авторизации', status: 'error' });
     }

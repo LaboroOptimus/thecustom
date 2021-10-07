@@ -21,11 +21,28 @@ export const loginUserAPI = (data: LoginData) =>
     },
   });
 
-  export const checkTokenAPI = (data:any) =>
+export const checkTokenAPI = async (data: any) =>
   axios.post('/api/service/check/token', data.payload, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      "Authentication" : data.headers.token,
+      Authentication: data.headers.token,
     },
   });
+
+export const addItemAPI = (data: any, token:string) =>
+  axios.post('/api/goods/add', jsonStringify(data), {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authentication: token,
+    },
+  });
+
+  export const getAllItemsAPI = async (data: any) => {
+    return axios.post('/api/goods/get/all', data)
+  }
+
+  export const getAllItemsByPriceAPI = async (data: any) => {
+    return axios.post('/api/goods/get/all-by-price', data)
+  }

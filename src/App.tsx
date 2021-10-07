@@ -4,9 +4,10 @@ import Listing from './pages/Listing';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
-import PublicRoute from './utils/routes/PublicRoute';
 import PrivateRoute from './utils/routes/PrivateRoute';
-import { useAuth } from './utils/hooks'
+import Add from './pages/Add';
+
+import { useAuth } from './utils/hooks';
 
 const App = () => {
   const isAuth = useAuth();
@@ -29,7 +30,7 @@ const App = () => {
         </PrivateRoute>
 
         <PrivateRoute isAuth={isAuth} path='/add'>
-          <h1>Add</h1>
+          <Add />
         </PrivateRoute>
 
         <Route path='/'>

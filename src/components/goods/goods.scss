@@ -1,63 +1,82 @@
 .wrapper-goods {
-    padding: 50px;
+  padding: 50px;
+
+  @media screen and (max-width: 900px) {
+    padding: 10px;
+  }
+}
+
+.wrapper-goods-sorting {
+    padding: 50px 50px 0 50px;
 
     @media screen and (max-width: 900px) {
-        padding: 10px;
+      padding: 10px;
     }
 }
 
 .filter {
-    height: 500px; 
-    background: #eee;
+  height: 500px;
+  background: #eee;
 }
 
 .goods-items-row {
-    margin-bottom: 40px;
-    margin-right: 0 !important;
-    margin-left: 0 !important;
+  margin-bottom: 40px;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
 
-    @media screen and (max-width: 900px) {
-        & > div {
-            padding-left: 0 !important;
-            margin: 20px 0;
-        }
-    }    
+  @media screen and (max-width: 900px) {
+    & > div {
+      padding-left: 0 !important;
+      margin: 20px 0;
+    }
+  }
+}
+
+.goods-list .ant-spin-nested-loading .ant-spin-container .ant-row {
+    display: flex;
+    justify-content: center;
+   
 }
 
 .goods-item {
-    display: flex;
-    flex-direction: column;
-    
+  display: flex !important;
+  flex-direction: column !important;
+  margin-top: 20px;
 
-    img {
-        display: block;
-        width: 100%;
-    }
+  .goods-item-title {
+    font-size: 12px;
+  }
+
+  .goods-item-price {
+      font-size: 19px
+  }
 }
 
-.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
-    border-right: none !important;
+.ant-menu-inline,
+.ant-menu-vertical,
+.ant-menu-vertical-left {
+  border-right: none !important;
 }
 
 .ant-menu-sub.ant-menu-inline {
-    background: transparent !important;
+  background: transparent !important;
 }
 
 .filter-icon {
-    font-size: 12px !important;
+  font-size: 12px !important;
 
-    &[aria-label="sneakers"] {
-        position: relative;
-        top: -4px;
-    }
+  &[aria-label='sneakers'] {
+    position: relative;
+    top: -4px;
+  }
 
-    &[aria-label="shirt"] {
-        position: relative;
-        top: -1px;
-    }
+  &[aria-label='shirt'] {
+    position: relative;
+    top: -1px;
+  }
 
-    &[aria-label="handbag"] {
-        position: relative;
-        top: -1px;
-    }
+  &[aria-label='handbag'] {
+    position: relative;
+    top: -1px;
+  }
 }

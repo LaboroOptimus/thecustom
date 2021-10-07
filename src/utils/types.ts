@@ -24,3 +24,9 @@ export enum ServerResponseStatus {
   Success = 'success',
   Error = 'error',
 }
+
+export enum Gender {
+  Male = 'Мужское',
+  Female = 'Женское'
+  
+} // Подумать на счет добавления дополнительных гендеров в следующих релизах

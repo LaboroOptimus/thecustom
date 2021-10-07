@@ -3,10 +3,10 @@ import { Menu, Grid, Layout } from 'antd';
 import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-
 import Logo from './Logo';
+import { RootState } from '../../redux/rootReducer';
+import { useSelector } from 'react-redux';
 import './menu.scss';
-import { useAuth } from '../../utils/hooks';
 
 const RightMenu = () => {
   const { Header } = Layout;
@@ -14,7 +14,7 @@ const RightMenu = () => {
   const { useBreakpoint } = Grid;
   const { md } = useBreakpoint();
   const isTabletOrMobile = useMediaQuery({ maxWidth: 1224 });
-  const isAuth = useAuth();
+  const isAuth = useSelector((state: RootState) => state.service.isTokenValid)
 
   return (
     <Header className={cn('menu-header', { 'menu-header-mobile': isTabletOrMobile })}>
@@ -35,7 +35,7 @@ const RightMenu = () => {
 
         {isAuth && (
           <Item key='add' className='menu-item'>
-            <Link to='/'>
+            <Link to='/add'>
               <span role='img' aria-label='plus'>
                 ➕
               </span>{' '}

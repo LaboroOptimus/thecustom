@@ -1,0 +1,10 @@
+.add-wrapper {
+  padding: 50px;
+
+  @media screen and (max-width: 900px) {
+    padding: 0 30px;
+    margin-top: 20px
+  }
+}
+
+

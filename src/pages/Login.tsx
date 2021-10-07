@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { Input, Space, Row, Col, Layout, Typography, Button, Form, Checkbox, message } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Input, Space, Row, Col, Layout, Typography, Button, Form, message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import cn from 'classnames';
 
 import Navbar from '../components/menu/Navbar';
 import { loginUser } from '../redux/thunk';
-import { emailReg } from '../utils/regular';
 import { LoadingStatus } from '../utils/types';
 import { RootState } from '../redux/rootReducer';
 
