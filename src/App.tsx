@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import PrivateRoute from './utils/routes/PrivateRoute';
 import Add from './pages/Add';
+import Item from './pages/Item';
 
 import { useAuth } from './utils/hooks';
 
@@ -15,9 +16,11 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path='/listing'>
+        <Route exact path='/listing'>
           <Listing />
         </Route>
+        <Route exact path='/listing/:id' component={Item} />
+         
         <Route path='/register'>
           <Register />
         </Route>

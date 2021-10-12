@@ -5,7 +5,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { RootState } from '../../redux/rootReducer';
 import { setItemPhoto } from '../../redux/actions/creators/goods';
 
-function getBase64(file: any) {
+function getBase64 (file: any)  {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -27,14 +27,16 @@ const Pictures = () => {
     dispatch(setItemPhoto(fileList));
   }, [fileList]);
 
-  const beforeUpload = (file: any) => {
+  const beforeUpload = async (file: any) => {
     /*добавить тултип с статусом ошибки */
-    return file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg'
-      ? true
-      : Upload.LIST_IGNORE;
+
+    file.full = await getBase64(file.originFileObj)
+    const isJpgOrPng = file.type === 'image/png' || file.type === 'image/jpg' || file.type === 'image/jpeg'
+    return isJpgOrPng ? true : Upload.LIST_IGNORE;
   };
 
   const dummyRequest = ({ file, onSuccess }: any) => {
+    console.log('dummyRequest')
     setTimeout(() => {
       onSuccess('ok');
     }, 0);
@@ -45,8 +47,10 @@ const Pictures = () => {
   };
 
   const handlePreview = async (file: any) => {
+    
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
+    
     }
 
     setPreviewImage(file.url || file.preview);
@@ -54,7 +58,11 @@ const Pictures = () => {
     setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
   };
 
-  const handleChange = ({ fileList }: any) => setFileList([...fileList]);
+  const handleChange = ({ fileList }: any) => {    
+    setFileList([...fileList])
+
+  };
+
 
   const uploadButton = (
     <div>
@@ -75,7 +83,7 @@ const Pictures = () => {
       >
         {fileList.length >= 5 ? null : uploadButton}
       </Upload>
-      <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
+      <Modal visible={previewVisible} footer={null} onCancel={handleCancel}>
         <img alt='example' style={{ width: '100%' }} src={previewImage} />
       </Modal>
     </>

@@ -14,6 +14,15 @@ import { gender, clothesSize, bootsSize, pantsSize, maleCategory, femaleCategory
 
 import './AddItem.scss';
 
+function getBase64 (file: any)  {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+}
+
 const AddItem = () => {
   const { Item } = Form;
   const { Option } = Select;
@@ -75,9 +84,9 @@ const AddItem = () => {
       setSizeType(pantsSize);
     }
 
-    if(['шапки', 'кепки', 'сумки', 'украшения', 'другое'].indexOf(currentType) > -1) {
+    if (['шапки', 'кепки', 'сумки', 'украшения', 'другое'].indexOf(currentType) > -1) {
       setCurrentSize([]);
-      setIsSizeDisabled(true)
+      setIsSizeDisabled(true);
       setIsPriceDisabled(false);
     }
   }, [currentType]);
@@ -113,14 +122,26 @@ const AddItem = () => {
 
   const handleReset = () => {
     setIsGenderDisabled(false);
-    setIsSizeDisabled(true)
+    setIsSizeDisabled(true);
     setIsPriceDisabled(true);
     form.resetFields();
   };
 
   const photos = useSelector((state: RootState) => state.goods.photos);
 
-  const handleAdd = () => {
+  // if (photos.length) {
+  //   console.log('photos', photos)
+  // }
+
+  const handleAdd = async () => {
+    for(let i = 0; i < photos.length; i++) {
+      const result = await getBase64(photos[i].originFileObj)
+      photos[i] = {
+        ...photos[i],
+        full: result
+      }
+    }
+    
     const data = {
       name: name,
       description: description,
@@ -157,7 +178,7 @@ const AddItem = () => {
           <Item
             label='Название товара'
             name='name'
-            rules={[{ required: true, message: 'Введите название товара' }]}
+            rules={[{ required: true, min: 6, message: 'Введите корректное название' }]}
           >
             <Input name='name' placeholder='Введите название' onChange={handlerChangeName} />
           </Item>
@@ -206,10 +227,7 @@ const AddItem = () => {
             </Col>
 
             <Col xs={12} sm={8} md={6}>
-              <Item
-                label='Размер (RU)'
-                name='size'
-              >
+              <Item label='Размер (RU)' name='size'>
                 <Select onChange={handleChangeSize} disabled={isSizeDisabled} mode='multiple'>
                   {sizeType?.map((item) => {
                     return (

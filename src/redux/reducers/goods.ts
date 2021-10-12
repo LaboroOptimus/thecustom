@@ -8,6 +8,14 @@ import {
   GET_ITEMS_SUCCESS,
   GET_ITEMS_ERROR,
   SET_SORT_TYPE,
+  GET_ITEM_CALL,
+  GET_ITEM_SUCCESS,
+  GET_ITEM_ERROR,
+  CLEAR_ITEM,
+  GET_ITEM_USER_INFO_CALL,
+  GET_ITEM_USER_INFO_SUCCESS,
+  GET_ITEM_USER_INFO_ERROR,
+  CLEAR_ITEM_USER_INFO
 } from '../actions/types';
 import { LoadingStatus } from '../../utils/types';
 
@@ -16,7 +24,11 @@ interface InitialState {
   photos: any[];
   addStatus: LoadingStatus;
   fetchStatus: LoadingStatus;
+  fetchItemStatus: LoadingStatus;
+  fetchItemUserInfoStatus: LoadingStatus;
+  itemUserInfo: {},
   items: any[];
+  item: {};
   sortType: string;
 }
 
@@ -25,7 +37,11 @@ const initialState: InitialState = {
   photos: [],
   addStatus: LoadingStatus.None,
   fetchStatus: LoadingStatus.None,
+  fetchItemStatus: LoadingStatus.None,
+  fetchItemUserInfoStatus: LoadingStatus.None,
   items: [],
+  item: {},
+  itemUserInfo: {},
   sortType: 'date',
 };
 
@@ -62,6 +78,30 @@ const goodsReducer = (state = initialState, action: any) => {
     }
     case SET_SORT_TYPE: {
       return { ...state, sortType: action.payload };
+    }
+    case GET_ITEM_CALL: {
+      return { ...state, fetchItemStatus: LoadingStatus.Pending}
+    }
+    case GET_ITEM_SUCCESS: {
+      return {...state, fetchItemStatus: LoadingStatus.Success, item: action.payload}
+    }
+    case CLEAR_ITEM: {
+      return {...state, item: [], fetchItemStatus: LoadingStatus.None}
+    }
+    case GET_ITEM_ERROR: {
+      return {...state, fetchItemStatus: LoadingStatus.Error}
+    }
+    case GET_ITEM_USER_INFO_CALL: {
+      return {...state, fetchItemUserInfoStatus: LoadingStatus.Pending }
+    }
+    case GET_ITEM_USER_INFO_SUCCESS: {
+      return {...state, fetchItemUserInfoStatus: LoadingStatus.Success, itemUserInfo: action.payload }
+    }
+    case GET_ITEM_USER_INFO_ERROR: {
+      return {...state, fetchItemUserInfoStatus: LoadingStatus.Error}
+    }
+    case CLEAR_ITEM_USER_INFO: {
+      return { ...state, fetchItemUserInfoStatus: LoadingStatus.None, itemUserInfo: {}}
     }
     default:
       return state;

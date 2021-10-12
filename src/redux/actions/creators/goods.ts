@@ -7,7 +7,16 @@ import {
   GET_ITEMS_CALL,
   GET_ITEMS_SUCCESS,
   GET_ITEMS_ERROR,
-  SET_SORT_TYPE
+  SET_SORT_TYPE,
+  GET_ITEM_CALL,
+  GET_ITEM_ERROR,
+  GET_ITEM_SUCCESS,
+  CLEAR_ITEM,
+  GET_ITEM_USER_INFO_CALL,
+  GET_ITEM_USER_INFO_SUCCESS,
+  GET_ITEM_USER_INFO_ERROR,
+  CLEAR_ITEM_USER_INFO,
+  ADD_ITEM_VIEW,
 } from '../types';
 
 export const setGoodsFilter = (id: string) => {
@@ -65,9 +74,67 @@ export const getItemsError = (data: any) => {
   }
 }
 
+export const getItemCall = () => {
+  return {
+    type: GET_ITEM_CALL,
+  }
+}
+
+export const getItemSuccess = (data: any) => {
+  return {
+    type: GET_ITEM_SUCCESS,
+    payload: data
+  }
+}
+
+export const clearItem = () => {
+  return {
+    type: CLEAR_ITEM
+  }
+}
+
+export const getItemError = (data: any) => {
+  return {
+    type: GET_ITEM_ERROR,
+    payload: data
+  }
+}
+
 export const setSortType = (data:string) => {
   return {
     type: SET_SORT_TYPE,
     payload: data
+  }
+}
+
+export const getItemUserInfoCall = () => {
+  return {
+    type: GET_ITEM_USER_INFO_CALL
+  }
+}
+
+export const getItemUserInfoSuccess = (data:any) => {
+  return {
+    type: GET_ITEM_USER_INFO_SUCCESS,
+    payload: data
+  }
+}
+
+export const getItemUserInfoError = (data:any) => {
+  return {
+    type: GET_ITEM_USER_INFO_ERROR,
+    payload: data
+  }
+}
+
+export const clearItemUserInfo = () => {
+  return {
+    type: CLEAR_ITEM_USER_INFO
+  }
+}
+
+export const addItemView = () => {
+  return {
+    type: ADD_ITEM_VIEW
   }
 }

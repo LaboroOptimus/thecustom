@@ -9,7 +9,8 @@ const schema = new Schema({
   photos: {type: Array, default: []},
   date: {type: Date, default: Date.now},
   price: {type: Number, required: true},
-  userId: {type: Types.ObjectId, ref: 'User'}
+  userId: {type: Types.ObjectId, ref: 'User'},
+  views: {type: Number, default: 0}
 });
 
 module.exports = model('Item', schema);

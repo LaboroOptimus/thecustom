@@ -18,6 +18,12 @@ import {
   getItemsCall,
   getItemsSuccess,
   getItemsError,
+  getItemCall,
+  getItemSuccess,
+  getItemError,
+  getItemUserInfoCall,
+  getItemUserInfoSuccess,
+  getItemUserInfoError,
 } from './actions/creators/goods';
 import {
   registerUserAPI,
@@ -25,6 +31,9 @@ import {
   checkTokenAPI,
   addItemAPI,
   getAllItemsAPI,
+  getItemAPI,
+  getItemUserInfoAPI,
+  addItemViewAPI
 } from './api';
 
 export const registerUser = (data: RegisterData) => {
@@ -114,3 +123,44 @@ export const getItems = (data: any) => {
     }
   };
 };
+
+export const getItem = (data: any) => {
+  return async (dispatch: any) => {
+    dispatch(getItemCall());
+    try {
+      const response = await getItemAPI(data);
+      if (response.data.status === ServerResponseStatus.Success) {
+        dispatch(getItemSuccess(response.data.item));
+      } else {
+        throw new Error(response.data.message || 'Что-то пошло не так');
+      }
+    } catch (error) {
+      dispatch(getItemError(error.message));
+    }
+  };
+};
+
+export const getItemUserInfo = (data: any) => {
+  return async (dispatch: any) => {
+    dispatch(getItemUserInfoCall());
+    try {
+      const response = await getItemUserInfoAPI(data);
+      if (response.data.status === ServerResponseStatus.Success) {
+        dispatch(getItemUserInfoSuccess(response.data.result));
+      } else {
+        throw new Error(response.data.message || 'Что-то пошло не так');
+      }
+    } catch (error) {
+      dispatch(getItemUserInfoError(error.message));
+    }
+  };
+};
+
+export const addItemView = (data:any) => {
+  return async () => {
+    try {
+      const response = await addItemViewAPI(data);
+      console.log(response.status)
+    } catch (error) {}
+  };
+}

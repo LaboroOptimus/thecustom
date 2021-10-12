@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, List, Select } from 'antd';
+import { Link } from 'react-router-dom'
 
 import { cutString } from '../../utils/methods';
 import { RootState } from '../../redux/rootReducer';
@@ -52,12 +53,14 @@ const GoodItems = () => {
         loading={isLoading}
         dataSource={items}
         className='goods-list'
-        renderItem={(item: any) => (
-          <Item key={item._id} className='goods-item'>
-            <img src={item.photos[0].thumbUrl} />
-            <span className='goods-item-title'>{cutString(item.name, 24)}</span>
-            <span className='goods-item-price'>{item.price} {' '} ₽</span>
+        renderItem={({_id, name, price, photos}: any) => (
+          <Link to={`/listing/${_id}`}>
+          <Item key={_id} className='goods-item'>
+            <img src={photos[0].thumbUrl} />
+            <span className='goods-item-title'>{cutString(name, 24)}</span>
+            <span className='goods-item-price'>{price} {' '} ₽</span>
           </Item>
+          </Link>
         )}
       />
     </>

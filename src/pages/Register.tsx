@@ -145,19 +145,19 @@ const Register = () => {
 
               {inputCount >= 1 && (
                 <Item name='vk' label='ВКонтакте' className='auth-input-item'>
-                  <Input name='vk' value={inputs['vk']} onChange={handleChange} />
+                  <Input placeholder="226236096" addonBefore="https://vk.com/id" name='vk' value={inputs['vk']} onChange={handleChange} />
                 </Item>
               )}
 
               {inputCount >= 2 && (
                 <Item name='instagram' label='Instagram' className='auth-input-item'>
-                  <Input name='instagram' value={inputs['instagram']} onChange={handleChange} />
+                  <Input placeholder="nickname" addonBefore="@" name='instagram' value={inputs['instagram']} onChange={handleChange} />
                 </Item>
               )}
 
               {inputCount >= 3 && (
                 <Item name='Telegram' label='Telegram' className='auth-input-item'>
-                  <Input name='telegram' value={inputs['telegram']} onChange={handleChange} />
+                  <Input placeholder="nickname" addonBefore="@" name='telegram' value={inputs['telegram']} onChange={handleChange} />
                 </Item>
               )}
 

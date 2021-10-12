@@ -8,5 +8,9 @@
       "allowJs": true,
       "moduleResolution": "node",
       "esModuleInterop": true,
-    }
+    },
+    "include": ["./src/declaration.d.ts"]
+    
   }
+
+  
