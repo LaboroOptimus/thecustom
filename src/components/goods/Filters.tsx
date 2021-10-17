@@ -26,7 +26,13 @@ const Filters = () => {
   };
 
   return (
-    <Menu mode='inline' openKeys={openKeys} onOpenChange={onOpenChange} style={{ width: '100%' }}>
+    <Menu
+      mode='inline'
+      openKeys={openKeys}
+      onOpenChange={onOpenChange}
+      style={{ width: '100%' }}
+      className='goods-menu'
+    >
       <SubMenu
         key='sub1'
         icon={

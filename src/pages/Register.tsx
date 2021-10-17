@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import cn from 'classnames';
 
 import Navbar from '../components/menu/Navbar';
+import Avatar from '../components/register/Avatar';
 import { registerUser } from '../redux/thunk';
 import { emailReg } from '../utils/regular';
 import { LoadingStatus } from '../utils/types';
@@ -18,6 +19,7 @@ interface IntitalInputs {
   surname: string;
   email: string;
   password: string;
+  code: string;
 }
 
 const Register = () => {
@@ -34,13 +36,16 @@ const Register = () => {
     vk: '',
     instagram: '',
     telegram: '',
+    code: ''
   };
 
   const [inputCount, setInputCount] = useState(1);
   const [inputs, setInputs] = useState<IntitalInputs>(initialInputsState);
   const [status, setStatus] = useState(LoadingStatus.None);
-  const regStatus = useSelector((state: RootState) => state.service.registerStatus);
+  const regStatus = useSelector((state: RootState) => state.service.registerStatus); // очищать чтобы можно было перейти на регистрацию снова
   const error = useSelector((state: RootState) => state.service.registerError);
+  const avatar = useSelector((state: RootState) => state.service.registerAvatar);
+
 
   useEffect(() => {
     setStatus(regStatus);
@@ -50,19 +55,19 @@ const Register = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (status === LoadingStatus.Pending) {
-      message.loading('Идет регистрация ...');
-    }
+    console.log(status)
+   
     if (status == LoadingStatus.Success) {
       message.destroy();
       message.success('Успешно', 1.5);
+      setStatus(LoadingStatus.None);
       history.push('/login');
     }
     if (status == LoadingStatus.Error) {
       message.destroy();
       message.error(`Ошибка: ${error}`, 2.5);
+      setStatus(LoadingStatus.None);
     }
-    setStatus(LoadingStatus.None);
   }, [status]);
 
   const handleChange = (e: any) => {
@@ -77,7 +82,7 @@ const Register = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(registerUser(inputs));
+    dispatch(registerUser({...inputs, avatar:avatar } ));
   };
 
   return (
@@ -91,8 +96,8 @@ const Register = () => {
             </Col>
             <Form
               name='basic'
-              labelCol={{ xs: 24, sm: 8, md: 4 }}
-              wrapperCol={{ xs: 24, sm: 16, md: 20 }}
+              labelCol={{ xs: 24, sm: 8, md: 5 }}
+              wrapperCol={{ xs: 24, sm: 16, md: 19 }}
               initialValues={{ remember: true }}
               onFinish={handleSubmit}
               autoComplete='off'
@@ -139,6 +144,22 @@ const Register = () => {
                 ]}
               >
                 <Password name='password' value={inputs['password']} onChange={handleChange} />
+              </Item>
+              <Item
+                label='Промокод'
+                name='code'
+                rules={[
+                  {
+                    required: true,
+                    message: 'Введите корректный промокод',
+                  },
+                ]}
+              >
+                <Input name='code' value={inputs['code']} onChange={handleChange} />
+              </Item>
+
+              <Item label='Аватар' name='photo'>
+                <Avatar/>
               </Item>
 
               {/*REFACTOR AND ADD DELETING ANTD MULTIINPUTS */}

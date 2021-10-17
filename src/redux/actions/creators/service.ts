@@ -8,7 +8,8 @@ import {
   LOGIN_ERROR,
   CHECK_TOKEN_CALL,
   CHECK_TOKEN_SUCCESS,
-  CHECK_TOKEN_ERROR
+  CHECK_TOKEN_ERROR,
+  SET_AVATAR,
 } from '../types';
 
 export const setPath = (path: string) => {
@@ -78,4 +79,11 @@ export const checkTokenError = (data: any) => {
     type: CHECK_TOKEN_ERROR,
     payload: data,
   };
+}
+
+export const setAvatar = (data: any) => {
+  return {
+    type: SET_AVATAR,
+    payload: data
+  }
 }

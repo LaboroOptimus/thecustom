@@ -13,6 +13,7 @@ export interface RegisterData {
   vk?: String;
   telegram?: String;
   instagram?: String;
+  avatar?: Object
 }
 
 export interface LoginData {

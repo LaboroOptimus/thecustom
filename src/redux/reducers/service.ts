@@ -9,6 +9,7 @@ import {
   CHECK_TOKEN_SUCCESS,
   CHECK_TOKEN_CALL,
   CHECK_TOKEN_ERROR,
+  SET_AVATAR
 } from '../actions/types';
 import { LoadingStatus } from '../../utils/types';
 
@@ -17,10 +18,11 @@ const initialState = {
   token: '',
   registerStatus: LoadingStatus.None,
   registerError: '',
+  registerAvatar: {},
   loginStatus: LoadingStatus.None,
   loginError: '',
   isTokenValid: true,
-  userId: ''
+  userId: '',
 };
 
 const serviceReducer = (state = initialState, action: any) => {
@@ -74,13 +76,16 @@ const serviceReducer = (state = initialState, action: any) => {
       return {
         ...state,
         isTokenValid: true,
-        token: action.payload.token
+        token: action.payload.token,
       };
     case CHECK_TOKEN_ERROR:
       return {
         ...state,
         isTokenValid: false,
       };
+
+    case SET_AVATAR:
+      return { ...state, registerAvatar: action.payload };
 
     default:
       return state;

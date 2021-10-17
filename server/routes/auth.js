@@ -6,6 +6,8 @@ const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
 const router = Router();
 
+const codes = ['111111', '323456', '231456', '535234', '653456']
+
 router.post(
   '/register',
   [
@@ -24,7 +26,15 @@ router.post(
         });
       }
 
-      const { email, password, instagram, telegram, vk, name, surname } = req.body;
+      const { email, password, instagram, telegram, vk, name, surname, avatar, code } = req.body;
+
+      if(codes.indexOf(code) == -1){
+        console.log('CODE', code)
+        res.status(200).json({ message: 'Неверный промокод', status: 'error'})
+        return 
+      }
+      
+  
       const candidate = await User.findOne({ email });
 
       if (candidate) {
@@ -42,6 +52,7 @@ router.post(
         instagram,
         telegram,
         vk,
+        avatar
       });
       await user.save();
       res.status(201).json({ message: 'Пользователь создан', status: 'success' });

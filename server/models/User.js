@@ -7,7 +7,8 @@ const schema = new Schema({
     surname: {type: String, required: true},
     instagram: {type: String},
     telegram: {type: String},
-    vk: {type: String}
+    vk: {type: String},
+    avatar: {type: Object}
 })
 
 module.exports = model('User', schema)

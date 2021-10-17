@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { InstagramOutlined, EyeOutlined } from '@ant-design/icons';
 import { Row, Col, Carousel } from 'antd';
-import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVk, faTelegramPlane, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import './item-info.scss';
-import avatar from './assets/avatar.jpg'
+import avatar from './assets/avatar.jpg';
 
 const Slider = ({ images }: any) => {
   return (
-    <Carousel autoplay>
+    <Carousel autoplay={false}>
       {images?.map((item: any, index: number) => {
         return (
           <div key={index} className='item-img-container'>
@@ -21,26 +22,27 @@ const Slider = ({ images }: any) => {
 };
 
 const ItemDetails = ({ item, user }: any) => {
-  
   return (
     <Row className='wrapper-item'>
-      <Col span={12}>
+      <Col xs={24} sm={24} md={12}>
         <Slider images={item.photos} />
       </Col>
-      <Col span={12}>
-        <div className='item-title'>
-        <h2>{item.name}</h2>
-        <span>Просмотров: {item.views}</span>
-        <span>Добавлено: {item.date && item.date.substring(0, 10).split('-').reverse().join('-')}</span>
+      <Col xs={24} sm={24} md={12}>
+        {/* <div className='item-title'>
+          <h2>{item.name}</h2>
+        </div> */}
+        <div className="item-info">
+          <span>Просмотров: {item.views}</span>
+          <span>
+            Добавлено: {item.date && item.date.substring(0, 10).split('-').reverse().join('-')}
+          </span>
         </div>
+
         <Row className='item-block'>
-          <Col span={12} className='item-user-info'>
+          <Col xs={24} sm={24} md={12} className='item-user-info'>
             {user && (
               <>
-                <img
-                  className='item-user-avatar'
-                  src={avatar}
-                />
+                <img className='item-user-avatar' src={avatar} />
                 <Col className='item-user-contacts'>
                   <p>
                     {user.name} {user.surname}
@@ -48,21 +50,24 @@ const ItemDetails = ({ item, user }: any) => {
                   {user.instagram && (
                     <p>
                       <a href={`https://www.instagram.com/${user.instagram}`} target='_blank'>
-                        <InstagramOutlined /> {user.instagram}
+                        <FontAwesomeIcon icon={faInstagram} className='item-icon' />{' '}
+                        {user.instagram}
                       </a>
                     </p>
                   )}
                   {user.vk && (
                     <p>
                       <a href={user.vk} target='_blank'>
-                        <InstagramOutlined /> {user.vk.split('.com/')[1]}
+                        <FontAwesomeIcon icon={faVk} className='item-icon' />{' '}
+                        {user.vk.split('.com/')[1]}
                       </a>
                     </p>
                   )}
                   {user.telegram && (
                     <p>
                       <a href={`https://t.me/${user.telegram}`} target='_blank'>
-                        <InstagramOutlined /> {user.telegram}
+                        <FontAwesomeIcon icon={faTelegramPlane} className='item-icon' />{' '}
+                        {user.telegram}
                       </a>
                     </p>
                   )}
@@ -70,15 +75,15 @@ const ItemDetails = ({ item, user }: any) => {
               </>
             )}
           </Col>
-          <Col span={12}>
+          <Col xs={24} sm={24} md={12} className="item-description">
             <p>{item.description}</p>
           </Col>
         </Row>
 
         <Row className='item-block'>
-        <Col span={12}>
+          <Col xs={24} sm={24} md={12}>
             <h3>Доступные размеры</h3>
-            <div className="size-container">
+            <div className='size-container'>
               {item.size?.map((size: string, index: number) => {
                 return (
                   <span className='size' key={index}>
@@ -88,11 +93,10 @@ const ItemDetails = ({ item, user }: any) => {
               })}
             </div>
           </Col>
-          <Col span={12}>
-            <h3 className="price-title">Стоимость</h3>
+          <Col xs={24} sm={24} md={12}>
+            <h3 className='price-title'>Стоимость</h3>
             <p className='price'>{item.price}</p>
           </Col>
-          
         </Row>
       </Col>
     </Row>

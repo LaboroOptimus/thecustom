@@ -7,11 +7,18 @@
 }
 
 .wrapper-goods-sorting {
-    padding: 50px 50px 0 50px;
+  padding: 50px 50px 0 50px;
 
-    @media screen and (max-width: 900px) {
-      padding: 10px;
-    }
+  @media screen and (max-width: 900px) {
+    padding: 10px;
+  }
+}
+
+.goods-menu {
+  @media screen and (max-width: 900px) {
+    margin-bottom: 20px !important;
+    font-size: 18px !important;
+  }
 }
 
 .filter {
@@ -33,9 +40,12 @@
 }
 
 .goods-list .ant-spin-nested-loading .ant-spin-container .ant-row {
-    display: flex;
-    justify-content: center;
-   
+  display: flex;
+  justify-content: center;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 }
 
 .goods-item {
@@ -45,10 +55,19 @@
 
   .goods-item-title {
     font-size: 12px;
+
+    @media screen and (max-width: 900px) {
+      font-size: 18px;
+      font-weight: 500;
+    }
   }
 
   .goods-item-price {
-      font-size: 19px
+    font-size: 19px;
+
+    @media screen and (max-width: 900px) {
+      font-size: 22px;
+    }
   }
 }
 

@@ -7,6 +7,7 @@ export const SET_FILTER = 'SET_FILTER'
 export const REGISTER_CALL = 'REGISTER_CALL';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_ERROR = 'REGISTER_ERROR';
+export const SET_AVATAR = 'SET_AVATAR'
 
 export const LOGIN_CALL = 'LOGIN_CALL';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
